@@ -102,6 +102,39 @@
                 "ignoreFailures": true
             }
         ]
+    },
+    {
+        "name": "example004_mouse",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "/e/QFile/QCode/Track/bin/example004_mouse",
+        "args": [],
+        "stopAtEntry": false,
+        "cwd": "/e/QFile/QCode/Track/",
+        "environment": [
+            {
+                "name": "LD_LIBRARY_PATH",
+                "value": "/e/QFile/QPackages/Linux/qhome2/OpenCV/opencv-2.4.13.6_install_ubuntu2004_gtk/install_ubuntu2004_gtk/lib/:$LD_LIBRARY_PATH"
+            },
+            {
+                "name": "DISPLAY",
+                "value": "192.168.0.110:0.0"
+            }
+        ],
+        "externalConsole": false,
+        "MIMode": "gdb",
+        "setupCommands": [
+            {
+                "description": "Enable pretty-printing for gdb",
+                "text": "-enable-pretty-printing",
+                "ignoreFailures": true
+            },
+            {
+                "description": "Set Disassembly Flavor to Intel",
+                "text": "-gdb-set disassembly-flavor intel",
+                "ignoreFailures": true
+            }
+        ]
     }
     ]
 }
