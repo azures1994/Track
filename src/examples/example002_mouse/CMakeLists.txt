@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16.3)
-project(example001_mouse VERSION 0.1.0 LANGUAGES C CXX)
+project(example002_mouse VERSION 0.1.0 LANGUAGES C CXX)
 
 message("Project: ${PROJECT_NAME}")
 message("CMAKE_SOURCE_DIR: ${CMAKE_SOURCE_DIR}")
@@ -7,6 +7,7 @@ message("CMAKE_BINARY_DIR: ${CMAKE_BINARY_DIR}")
 message("CMAKE_CURRENT_SOURCE_DIR: ${CMAKE_CURRENT_SOURCE_DIR}")
 message("CMAKE_CURRENT_BINARY_DIR: ${CMAKE_CURRENT_BINARY_DIR}")
 
+set(CMAKE_BUILD_TYPE Debug)
 
 set(OpenCV_DIR /e/QFile/QPackages/Linux/qhome2/OpenCV/opencv-2.4.13.6_install_ubuntu2004_gtk/install_ubuntu2004_gtk/)
 include_directories(${OpenCV_DIR}/include/)

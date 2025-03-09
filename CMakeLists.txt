@@ -4,3 +4,4 @@ project(Track)
 
 set(example_src_dir src/examples/)
 add_subdirectory(${example_src_dir}/example001_mouse/)
+add_subdirectory(${example_src_dir}/example002_mouse/)
