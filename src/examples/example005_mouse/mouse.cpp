@@ -2,6 +2,7 @@
 #include "opencv2/highgui/highgui.hpp"
  
 #include <stdio.h>
+#include <iostream>
  
 using namespace cv;
  
@@ -57,8 +58,9 @@ int main(int, char**)
             调用kalman这个类的predict方法得到状态的预测值矩阵
             */
  
- 
+            std::cout << "KF.statePost: " << std::endl << KF.statePost << std::endl;
             Mat prediction = KF.predict();
+            std::cout << "prediction:  " << std::endl << prediction << std::endl;
             //用kalman预测的是角度
             double predictAngle = prediction.at<float>(0);
             Point predictPt = calcPoint(center, R, predictAngle);
@@ -84,14 +86,14 @@ int main(int, char**)
             img = Scalar::all(0);
             //状态坐标白色
             drawCross(statePt, Scalar(255, 255, 255), 3);
-            //测量坐标蓝色
+            //测量坐标红色
             drawCross(measPt, Scalar(0, 0, 255), 3);
             //预测坐标绿色
             drawCross(predictPt, Scalar(0, 255, 0), 3);
-            //真实值和测量值之间用红色线连接起来
-            line(img, statePt, measPt, Scalar(0, 0, 255), 3, CV_AA, 0);
-            //真实值和估计值之间用黄色线连接起来
-            line(img, statePt, predictPt, Scalar(0, 255, 255), 3, CV_AA, 0);
+            // //真实值和测量值之间用红色线连接起来
+            // line(img, statePt, measPt, Scalar(0, 0, 255), 3, CV_AA, 0);
+            // //真实值和估计值之间用黄色线连接起来
+            // line(img, statePt, predictPt, Scalar(0, 255, 255), 3, CV_AA, 0);
  
  
             /*
@@ -101,6 +103,11 @@ int main(int, char**)
  
             if (theRNG().uniform(0, 4) != 0)
                 KF.correct(measurement);
+
+            double statePostAngle = KF.statePost.at<float>(0);
+            Point statePostPt = calcPoint(center, R, statePostAngle);
+            //最优估计值 蓝色
+            drawCross(statePostPt, Scalar(255, 0, 0), 3);
  
             randn(processNoise, Scalar(0), Scalar::all(sqrt(KF.processNoiseCov.at<float>(0, 0))));
             //不加噪声的话就是匀速圆周运动，加了点噪声类似匀速圆周运动，因为噪声的原因，运动方向可能会改变
